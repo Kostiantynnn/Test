@@ -4,14 +4,8 @@ on:
   pull_request:
     branches: 
       - main
-    types: [ labeled ]
-  pull_request_review:
-    types:
-      - submitted
-
 jobs:
   build:
-    if: ${{ github.event.label.name == 'test_label' }}
     runs-on: ubuntu-latest
 
     steps:
