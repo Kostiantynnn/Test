@@ -1,10 +1,10 @@
 
-name: MergeToMain
+name: MergeToSprint1
 
 on:
   pull_request:
     branches: 
-      - main
+      - sprints/sprint1
     types: [closed]
 
 jobs:
