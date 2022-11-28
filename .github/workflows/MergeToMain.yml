@@ -4,7 +4,7 @@ name: MergeToMain
 on:
   pull_request:
     branches: 
-      - main
+      - sprints/sprint1
     types: [closed]
 
 jobs:
