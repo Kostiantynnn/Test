@@ -1,5 +1,5 @@
 
-name: MergeToMain
+name: MergeToSprint1
 
 on:
   pull_request:
