@@ -1,6 +1,6 @@
 
 
-name: MergeToSprint1
+name: MergeToSprint
 
 on:
   pull_request:
@@ -17,9 +17,10 @@ jobs:
 
     - name: Merge sprint1 to env/qa
       run: |  
-          echo The PR was merged to sprints/sprint1!
+          echo The PR was merged to sprints/sprint1!          
+          git fetch --unshallow
           git checkout env/qa
-          git fetch origin sprints/sprint1
+          git pull origin sprints/sprint1
           git merge --no-ff origin/sprints/sprint1 -m "Auto-merge sprint1 to env/qa"
           git push
           echo Success!
