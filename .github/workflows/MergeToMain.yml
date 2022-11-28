@@ -4,9 +4,8 @@ name: MergeToMain
 on:
   pull_request:
     branches: 
-      - revert-4-test-5
-    types: 
-      -closed
+      - main
+    types: [closed]
 
 jobs:
   my-action:
