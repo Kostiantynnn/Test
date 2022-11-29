@@ -1,19 +1,20 @@
-name: QA-Merge
+name: MergeToSprint1
 
 on:
-  pull_request:
+  push:
     branches: 
-      - env/qa
-    types: [closed]
+      - sprint/sprint1
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  update-qa-branch:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - name: env/qa merge
-      run: |  
-          echo ENV/QA was merged
-          echo Success!
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ github.token }}
+          source: 'sprint/sprint1'
+          target: 'env/qa'
