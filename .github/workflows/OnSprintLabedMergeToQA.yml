@@ -6,7 +6,6 @@ on:
       - env/qa
     types: 
       - closed
-      - labeled
 
 jobs:
   if_merged_and_labeled:
@@ -19,6 +18,7 @@ jobs:
         with:
           one_of: sprint1
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          allow_failure: true
 
       - if: steps.check_labels.outputs.label_check == 'success'
         run: echo deploy to ephemeral environment
