@@ -9,17 +9,11 @@ on:
 
 jobs:
   if_merged_and_labeled:
-    if: github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.merged == true
+      && contains(github.event.pull_request.labels.*.name, 'sprint')
     runs-on: ubuntu-latest
     
     steps:
-      - id: check_labels
-        uses: docker://agilepathway/pull-request-label-checker:latest
-        with:
-          one_of: sprint1
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          allow_failure: true
-
-      - if: steps.check_labels.outputs.label_check == 'success'
-        run: |  
-          echo Success! 
+      - name: Debug log
+        run: echo S! 
