@@ -21,4 +21,5 @@ jobs:
           allow_failure: true
 
       - if: steps.check_labels.outputs.label_check == 'success'
-        run: echo deploy to ephemeral environment
+        run: |  
+          echo Success! 
