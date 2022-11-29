@@ -1,0 +1,24 @@
+name: OnSprintLabedMergeToQA
+
+on:
+  pull_request:
+    branches: 
+      - env/qa
+    types: 
+      - closed
+
+jobs:
+  if_merged_and_labeled:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: check_labels
+        uses: docker://agilepathway/pull-request-label-checker:latest
+        with:
+          one_of: sprint1
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          allow_failure: true
+
+      - if: steps.check_labels.outputs.label_check == 'success'
+        run: echo deploy to ephemeral environment
