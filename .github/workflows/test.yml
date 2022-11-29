@@ -3,12 +3,10 @@ name: MergeToSprint1
 on:
   push:
     branches: 
-      - env/qa
-    types: [closed]
+      - sprint/sprint1
 
 jobs:
-  if_merged:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+  update-qa-branch:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
