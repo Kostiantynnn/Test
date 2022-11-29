@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: check_labels
+      - id: check_labels
         uses: docker://agilepathway/pull-request-label-checker:latest
         with:
           one_of: sprint1
