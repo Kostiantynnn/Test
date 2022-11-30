@@ -1,7 +1,7 @@
 name: OnSprintLabedMergeToQA
 
 on:
-  pull_request_target:
+  pull_request:
     branches: 
       - env/qa
     types: 
@@ -26,7 +26,5 @@ jobs:
           labels: |
             autocreated
             sprint1
-          reviewers: |
-            Kostiantynnn
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
