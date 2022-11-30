@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     name: release_pull_request
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-    - name: Create PR to branch
-      uses: gorillio/github-action-cherry-pick@master
-      with:
-        pr_branch: 'sprints/sprint1'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cherry pick into release-v1.0
+        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
+        with:
+          branch: sprints/sprint1
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
