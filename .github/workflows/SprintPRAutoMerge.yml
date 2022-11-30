@@ -5,6 +5,8 @@ on:
     branches: 
       - sprints/sprint1
     types: [labeled]
+    
+  workflow_dispatch:
 
 jobs:
   automerge:
