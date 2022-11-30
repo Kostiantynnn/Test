@@ -1,7 +1,7 @@
 name: OnSprintLabedMergeToQA
 
 on:
-  pull_request:
+  pull_request_target:
     branches: 
       - env/qa
     types: 
@@ -13,23 +13,19 @@ jobs:
       github.event.pull_request.merged == true
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
-    
+    name: release_pull_request
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
-          # The token of the user that should perform the merges. 
-          # This must be a personal access token with the necessary permissions
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-
-      - name: Autodev
-        uses: Staffbase/autodev-action@v1.5.1
+      - name: Cherry pick into sprints/sprint1
+        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
         with:
-          # The token used to fetch the pull requests from the GitHub API
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: 'env/qa'
-          branch:	'sprints/sprint1'
-          label:	'sprint1'
-          labels: true
-          success_label: 'sprint1'
+          branch: sprints/sprint1
+          labels: |
+            autocreated
+          reviewers: |
+            Kostiantynnn
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
