@@ -20,13 +20,13 @@ jobs:
         with:
           # The token of the user that should perform the merges. 
           # This must be a personal access token with the necessary permissions
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Autodev
         uses: Staffbase/autodev-action@v1.5.1
         with:
           # The token used to fetch the pull requests from the GitHub API
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch:	'sprints/sprint1'
           label:	'sprint1'
