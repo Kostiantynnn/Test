@@ -15,13 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Backport Action
-        uses: sqren/backport-github-action@v8.9.3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          auto_backport_label_prefix: auto-backport-to-sprints/sprint1
-          add_original_reviewers: true
-          
-      - name: Info log
-        if: ${{ success() }}
-        run: echo S! 
+          # The token of the user that should perform the merges. 
+          # This must be a personal access token with the necessary permissions
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
+
+      - name: Autodev
+        uses: Staffbase/autodev-action@v1.5.1
+        with:
+          # The token used to fetch the pull requests from the GitHub API
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          branch:	'sprints/sprint1'
+          label:	'sprint1'
