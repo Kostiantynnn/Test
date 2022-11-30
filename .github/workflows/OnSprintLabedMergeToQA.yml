@@ -27,7 +27,5 @@ jobs:
             autocreated
           reviewers: |
             Kostiantynnn
-          title: '[cherry-pick] {old_title}'
-          body: 'Cherry picking #{old_pull_request_id} onto this branch'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
