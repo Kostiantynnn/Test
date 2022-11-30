@@ -30,6 +30,3 @@ jobs:
             Kostiantynnn
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-  call-workflow:
-    uses: Kostiantynnn/Test/.github/workflows/SprintPRAutoMerge.yml@main
