@@ -19,7 +19,7 @@ jobs:
         uses: sqren/backport-github-action@v8.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          auto_backport_label_prefix: sprints/sprint1
+          auto_backport_label_prefix: auto-backport-to-
           add_original_reviewers: true
           
       - name: Info log
