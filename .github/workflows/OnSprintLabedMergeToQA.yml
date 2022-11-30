@@ -13,23 +13,15 @@ jobs:
       github.event.pull_request.merged == true
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
-    
+    name: release_pull_request
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          # The token of the user that should perform the merges. 
-          # This must be a personal access token with the necessary permissions
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Autodev
-        uses: Staffbase/autodev-action@v1.5.1
-        with:
-          # The token used to fetch the pull requests from the GitHub API
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: 'env/qa'
-          branch:	'sprints/sprint1'
-          label:	'sprint1'
-          labels: true
-          success_label: 'sprint1'
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Create PR to branch
+      uses: gorillio/github-action-cherry-pick@master
+      with:
+        pr_branch: 'sprints/sprint1'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITBOT_EMAIL: <BOT_EMAIL>
+        DRY_RUN: false
