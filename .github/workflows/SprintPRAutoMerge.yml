@@ -1,0 +1,20 @@
+name: SprintPRAutoMerge
+
+on:
+  pull_request:
+    branches: 
+      - sprints/sprint1
+    types: [labeled]
+
+jobs:
+  automerge:
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'autocreated')
+      && contains(github.event.pull_request.labels.*.name, 'sprint1')
+    runs-on: ubuntu-latest
+    steps:
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
