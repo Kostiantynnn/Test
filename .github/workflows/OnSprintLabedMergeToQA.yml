@@ -11,9 +11,16 @@ jobs:
   if_merged_and_labeled:
     if: |
       github.event.pull_request.merged == true
-      && contains(github.event.pull_request.labels.*.name, 'sprint')
+      && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
     
     steps:
+      - name: Backport Action
+        uses: sqren/backport-github-action@v8.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          auto_backport_label_prefix: auto-backport-to-sprints/sprint1
+          add_original_reviewers: true
+          
       - name: Debug log
         run: echo S! 
