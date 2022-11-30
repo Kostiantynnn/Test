@@ -28,5 +28,8 @@ jobs:
         with:
           # The token used to fetch the pull requests from the GitHub API
           token: ${{ secrets.GITHUB_TOKEN }}
+          base: 'env/qa'
           branch:	'sprints/sprint1'
           label:	'sprint1'
+          labels: true
+          success_label: 'sprint1'
