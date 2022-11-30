@@ -15,10 +15,5 @@ jobs:
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
     steps:
-    - name: Merge Pull Request
-      uses: juliangruber/merge-pull-request-action@v1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        number: 1
-        method: squash
-        repo: juliangruber/octokit-action
+      - name: Info log
+        run: echo OK!
