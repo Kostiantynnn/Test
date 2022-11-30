@@ -9,16 +9,19 @@ on:
 
 jobs:
   if_merged_and_labeled:
-    if: github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.merged == true
+      && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
     
     steps:
-      - name: check_labels
-        uses: docker://agilepathway/pull-request-label-checker:latest
+      - name: Backport Action
+        uses: sqren/backport-github-action@v8.9.3
         with:
-          one_of: sprint1
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          allow_failure: true
-
-      - if: steps.check_labels.outputs.label_check == 'success'
-        run: echo deploy to ephemeral environment
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          auto_backport_label_prefix: auto-backport-to-main
+          add_original_reviewers: true
+          
+      - name: Info log
+        if: ${{ success() }}
+        run: echo S! 
