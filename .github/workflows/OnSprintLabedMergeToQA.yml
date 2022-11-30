@@ -25,6 +25,7 @@ jobs:
           branch: sprints/sprint1
           labels: |
             autocreated
+            sprint1
           reviewers: |
             Kostiantynnn
         env:
