@@ -22,5 +22,6 @@ jobs:
           auto_backport_label_prefix: auto-backport-to-sprints/sprint1
           add_original_reviewers: true
           
-      - name: Debug log
+      - name: Info log
+        if: ${{ success() }}
         run: echo S! 
