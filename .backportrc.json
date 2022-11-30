@@ -1,0 +1,9 @@
+{
+  // the branches available to backport to
+  "targetBranchChoices": ["main", "sprints/sprint1"],
+
+  // In this case, adding the label "auto-backport-to-production" will backport the PR to the "production" branch
+  "branchLabelMapping": {
+    "^auto-backport-to-(.+)$": "$1"
+  }
+}
