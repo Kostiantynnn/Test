@@ -1,10 +1,6 @@
 {
-  // example repo info
-  "repoOwner": "torvalds",
-  "repoName": "linux",
-
   // the branches available to backport to
-  "targetBranchChoices": ["main", "production", "staging"],
+  "targetBranchChoices": ["main", "sprints/sprint1"],
 
   // In this case, adding the label "auto-backport-to-production" will backport the PR to the "production" branch
   "branchLabelMapping": {
