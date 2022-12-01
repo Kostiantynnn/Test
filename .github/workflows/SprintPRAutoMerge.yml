@@ -12,9 +12,9 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'autocreated')
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
-      steps:
-        - uses: reitermarkus/automerge@v2
-          with:
-            token: ${{ secrets.MY_GITHUB_TOKEN }}
-            required-labels: autocreated, sprint1
-            dry-run: false
+    steps:
+      - uses: reitermarkus/automerge@v2
+        with:
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          required-labels: autocreated
+          dry-run: false
