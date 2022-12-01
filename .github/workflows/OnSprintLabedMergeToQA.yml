@@ -26,6 +26,7 @@ jobs:
           labels: |
             autocreated
             sprint1
+            automerge
           reviewers: |
             Kostiantynnn
         env:
