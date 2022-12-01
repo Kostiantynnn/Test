@@ -4,9 +4,7 @@ on:
   pull_request:
     branches: 
       - sprints/sprint1
-    types: [labeled, opened]
-    
-  workflow_dispatch:
+    types: [labeled]
 
 jobs:
   automerge:
