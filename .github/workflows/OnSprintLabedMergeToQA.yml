@@ -18,7 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          token: ${{secrets.PAT}}
           fetch-depth: 0
       - name: Cherry pick into sprints/sprint1
         uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
