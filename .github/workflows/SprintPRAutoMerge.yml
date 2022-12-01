@@ -4,9 +4,7 @@ on:
   pull_request:
     branches: 
       - sprints/sprint1
-    types: [labeled, opened]
-    
-  workflow_dispatch:
+    types: [labeled]
 
 jobs:
   automerge:
@@ -14,6 +12,9 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'autocreated')
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
     runs-on: ubuntu-latest
-    steps:
-      - name: Info log
-        run: echo OK!
+      steps:
+        - uses: reitermarkus/automerge@v2
+          with:
+            token: ${{ secrets.MY_GITHUB_TOKEN }}
+            required-labels: autocreated, sprint1
+            dry-run: false
