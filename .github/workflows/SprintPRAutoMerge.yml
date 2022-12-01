@@ -13,10 +13,12 @@ jobs:
     if: |
       contains(github.event.pull_request.labels.*.name, 'autocreated')
       && contains(github.event.pull_request.labels.*.name, 'sprint1')
+      && contains(github.event.pull_request.labels.*.name, 'automerge')
     runs-on: ubuntu-latest
     steps:
-      - uses: reitermarkus/automerge@v2
-        with:
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          required-labels: autocreated
-          dry-run: false
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: autocreated, sprint1, automerge
