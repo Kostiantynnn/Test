@@ -17,5 +17,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: env/qa
+          title: Automatic pull request
           label: autocreated
           allow_no_diff: true
