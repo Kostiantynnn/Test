@@ -1,0 +1,23 @@
+name: Create PR to env/qa after Sprint merge
+on:
+  pull_request:
+    branches: 
+      - sprints/sprint1
+    types: 
+      - closed
+jobs:
+  action-pull-request:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@v0.5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: env/qa
+          label: autocreated
+          allow_no_diff: true
