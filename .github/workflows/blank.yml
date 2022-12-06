@@ -6,16 +6,20 @@ on:
     types: 
       - closed
 jobs:
-  release_pull_request:
+  sync-branches:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    name: release_pull_request
+    name: Syncing branches
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-    - name: Create PR to branch
-      uses: gorillio/github-action-cherry-pick@master
-      with:
-        pr_branch: 'env/qa'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DRY_RUN: false
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Create Sync PR
+        uses: sudoStatus200/create-sync-pr@0.3.1
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          SOURCE_BRANCH: "sprints/sprint1"
+          TARGET_BRANCH: "env/qa"
