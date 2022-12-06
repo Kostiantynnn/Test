@@ -6,20 +6,15 @@ on:
     types: 
       - closed
 jobs:
-  sync-branches:
+  action-pull-request:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    name: Syncing branches
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Set up Node
-        uses: actions/setup-node@v1
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@v0.5.3
         with:
-          node-version: 12
-      - name: Create Sync PR
-        uses: sudoStatus200/create-sync-pr@0.3.1
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SOURCE_BRANCH: "sprints/sprint1"
-          TARGET_BRANCH: "env/qa"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: env/qa
+          label: autocreated
