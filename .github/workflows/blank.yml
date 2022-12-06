@@ -2,7 +2,7 @@ name: Create PR to env/qa after Sprint merge
 on:
   pull_request:
     branches: 
-      - sprints/sprint1
+      - sprints/sprint*
     types: 
       - closed
 jobs:
