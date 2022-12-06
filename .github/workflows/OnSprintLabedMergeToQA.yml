@@ -27,5 +27,7 @@ jobs:
             autocreated
             sprint1
             automerge
+          reviewers: |
+            Kostiantynnn
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
