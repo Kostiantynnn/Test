@@ -20,5 +20,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: env/qa
           label: autocreated,env/qa
-          title: ${{ GITHUB_BASE_REF }} -> env/qa
           allow_no_diff: true
